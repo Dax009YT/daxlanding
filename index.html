@@ -167,7 +167,7 @@
         audioElement.src = "/audios/" + randomAudioFile;
         filenameElement.textContent = `Now playing: ${randomAudioFile}`;
         audioElement.volume = 0.5;
-        audioElement.load()
+        audioElement.load();
 
         function newAudio() {
             let newRandomAudioFile = getRandomAudioFile();
