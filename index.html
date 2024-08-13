@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dax009's Website</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Dax009's Website">
+        <meta property="og:description" content="Dax009's website!">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://dax009yt.github.io"/>
+        <meta name="apple-mobile-web-app-status-bar" content="#FF6A00">
+        <meta name="apple-mobile-web-app-capable" content="yes"> 
+        <meta name="msapplication-TileColor" content="#FF6A00">
+        <meta name="theme-color" content="#FF6A00">
+        <meta name="theme-color" content="rgba(255, 106, 0, 1)">
+        <meta name="keywords" content="Dax009, Dax009YT, YTDax009">
+        <meta name="description" content="Dax009's website!">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="stylesheet" href="assets/style.css">
+
+        <style>
+        html {
+            text-align: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            
+        } 
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                /* background-color: #121212; */
+                color: white;
+                background: linear-gradient(0deg, rgba(18,31,46,1) 0%, rgba(0,35,84,1) 100%);
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+        }
+        @media (prefers-color-scheme: light) {
+            body {
+                background: linear-gradient(0deg, rgba(0,104,255,1) 0%, rgba(2,26,96,1) 100%);
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+        }
+        @font-face {
+            font-family: eightbitoperator;
+            src: url(assets/8bitoperatorJVE.woff);
+        }
+        #main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+        }
+        #websiteLogo {
+            max-width: 95%;
+            height: auto;
+        }
+        #buttons, #linkButtons {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .buttons > * {
+            display: flex;
+        }
+        .buttonlink {
+            text-decoration: none;
+        }
+        a {
+            margin: auto;
+        }
+        button {
+                background-color: #4681f4;
+                background: linear-gradient(135deg, rgba(59,0,255,1) 0%, rgba(0,148,255,1) 100%);
+                border-radius: 3px;
+                color: white; 
+                border: none;
+                margin: 0 0 2px 0;
+                padding-left: 5px;
+                padding-right: 5px;
+                font-size: 30px;
+                transition: all 0.2s ease;
+                font-family: eightbitoperator, 'Source Sans Pro';
+                box-sizing: border-box;
+                display: block;
+                text-decoration: none;
+        } 
+        button:active {
+            background: #0094FF;
+        }
+        button:hover {
+            transform: scale(1.05) perspective(1px)
+        }
+        .footerIcon {
+            width: 50px;
+        }
+        #audio {
+            margin-top: 10px;
+            font-family: eightbitoperator;
+        }
+        #newAudio {
+            padding-left: 8px;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <img id="websiteLogo" src="assets/1.png">
+            <div id="buttons">
+                <a target="_blank" href="https://youtube.com/Dax009"><img src="/images/yt.svg" class="footerIcon"></a>
+                <a target="_blank" href="https://twitter.com/Dax009YT"><img src="/images/twtr.svg" class="footerIcon"></a>
+                <a target="_blank" href="https://discord.com/invite/Zkp72CE"><img src="/images/discord.svg" class="footerIcon"></a>
+                <a target="_blank" href="https://github.com/Dax009YT"><img src="/images/github.svg" class="footerIcon"></a>
+                <a target="_blank" href="mailto:dax009business@hotmail.com"><img src="/images/envelope-regular.svg" class="footerIcon invert"></a>
+            </div>
+            <div id="linkButtons">
+                <a class="buttonlink" href="https://dax009.ink"><button>Main website</button></a>
+                <a class="buttonlink" href="https://links.dax009.ink"><button>Social links</button></a>
+                <a class="buttonlink" href="https://dax009.ink/specs/"><button>Specs</button></a>
+            </div>
+            <div id="audio">
+                <audio id="randomAudio" loop controls></audio><a onClick="newAudio()"><img id="newAudio" class="footerIcon invert" src="/images/sync-alt-solid.svg"></a>
+                <p id="audioFilename"></p>
+            </div>
+        </div>
+    </body>
+    <script>
+        const audioFiles = [
+            'dogcheck.mp3',
+            'castletown_empty.mp3',
+            'S_Shellfie.mp3',
+            'mus_mettaton_ex.mp3',
+            'RotM_Ride_or_Fry.mp3',
+            'mus_xpart_2.mp3',
+            'mus_ghostbattle.mp3',
+            'AUDIO_STORY.mp3',
+            'mus_menu6.mp3',
+            'mus_sansdate.mp3',
+            'mus_snowy.mp3',
+            'april_2012.mp3',
+            'castletown.mp3',
+            'cyber.mp3',
+            'napsta_alarm.mp3',
+            'mus_waterfall.mp3',
+            'S_Calamari_Inkantation_(Callie_vs._Marie).mp3',
+            'S2_Blitz_It!.mp3',
+            'S2_Wave_Prism.mp3',
+            'Splatoon_2_-_Fly_Octo_Fly_(Final_Fest_version).mp3'
+        ];
+
+        function getRandomAudioFile() {
+            let randomIndex = Math.floor(Math.random() * audioFiles.length);
+            return audioFiles[randomIndex];
+        }
+
+        const audioElement = document.getElementById('randomAudio');
+        const filenameElement = document.getElementById('audioFilename');
+
+        const randomAudioFile = getRandomAudioFile();
+        audioElement.src = "/audios/" + randomAudioFile;
+        filenameElement.textContent = `Now playing: ${randomAudioFile}`;
+        audioElement.volume = 0.5;
+        audioElement.load()
+
+        function newAudio() {
+            let newRandomAudioFile = getRandomAudioFile();
+            audioElement.src = "/audios/" + newRandomAudioFile;
+            audioElement.currentTime = 0;
+            audioElement.load();
+            filenameElement.textContent = `Now playing: ${newRandomAudioFile}`;
+        }
+    </script>
+</html>
