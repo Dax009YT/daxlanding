@@ -17,6 +17,8 @@
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="stylesheet" href="assets/style.css">
 
+        <script src="https://unpkg.com/wavesurfer.js@7"></script>
+
         <style>
         html {
             text-align: center;
@@ -109,10 +111,15 @@
         }
         audio {
             height: 30px;
+            width: 100px;
         }
-        #newAudio {
+        #waveform {
+            min-width: 300px;
+        }
+        .audioControls {
             padding-left: 8px;
             height: 30px;
+            color: white;
         }
         #audioFilename {
             margin-top: 0;
@@ -132,16 +139,25 @@
             </div>
             <div id="linkButtons">
                 <a class="buttonlink" href="https://dax009.ink"><button>Main website</button></a>
+                <a class="buttonlink" href="https://dax009.ink/about"><button>About me</button></a>
                 <a class="buttonlink" href="https://links.dax009.ink"><button>Social links</button></a>
                 <a class="buttonlink" href="https://dax009.ink/specs/"><button>Specs</button></a>
             </div>
             <div id="audio">
-                <audio id="randomAudio" loop controls></audio><a onClick="newAudio()"><img id="newAudio" class="footerIcon invert" src="/images/sync-alt-solid.svg"></a>
+                <div id="waveform"></div>
+                <!-- <audio id="randomAudio" loop controls></audio>-->
+                <a onClick="toggleAudio()"><img class="audioControls footerIcon" id="playPause" src="/images/play.svg"></a> 
+                <a onClick="newAudio()"><img class="audioControls footerIcon"src="/images/sync-solid.svg"></a> 
                 <p id="audioFilename"></p>
             </div>
         </div>
     </body>
     <script>
+        const audioDiv = document.getElementById("audio");
+        const waveformDiv = document.getElementById("waveform");
+        const playPause = document.getElementById("playPause");
+        const filenameElement = document.getElementById('audioFilename');
+
         const audioFiles = [
             'dogcheck.mp3',
             'castletown_empty.mp3',
@@ -165,27 +181,43 @@
             'Splatoon_2_-_Fly_Octo_Fly_(Final_Fest_version).mp3'
         ];
 
+
+
+        const wavesurfer = WaveSurfer.create({
+            container: waveformDiv,
+            waveColor: '#FFFFFF',
+            progressColor: '#121212',
+            height: '30',
+            normalize: true,
+        })
+        wavesurfer.setVolume(0.5);
+        wavesurfer.load(getRandomAudioFile())
         function getRandomAudioFile() {
             let randomIndex = Math.floor(Math.random() * audioFiles.length);
-            return audioFiles[randomIndex];
+            let fileName = audioFiles[randomIndex]
+            filenameElement.textContent = `Now playing: ${fileName}`;
+            return '/audios/' + fileName;
         }
 
-        const audioElement = document.getElementById('randomAudio');
-        const filenameElement = document.getElementById('audioFilename');
+        function toggleAudio() {
+            if (wavesurfer.isPlaying()) {
+                wavesurfer.pause()
+                playPause.src = "/images/play.svg";
+            } else {
+                wavesurfer.play()
+                playPause.src = "/images/pause.svg";
+            }
+        }
 
-        const randomAudioFile = getRandomAudioFile();
-        audioElement.src = "/audios/" + randomAudioFile;
-        filenameElement.textContent = `Now playing: ${randomAudioFile}`;
-        audioElement.volume = 0.5;
-        audioElement.load();
+        wavesurfer.on('finish', () => {
+            wavesurfer.play()
+        })
+
 
         function newAudio() {
             let newRandomAudioFile = getRandomAudioFile();
-            audioElement.src = "/audios/" + newRandomAudioFile;
-            audioElement.pause();
-            audioElement.currentTime = 0;
-            audioElement.load();
-            filenameElement.textContent = `Now playing: ${newRandomAudioFile}`;
+            wavesurfer.pause();
+            wavesurfer.load(newRandomAudioFile);
         }
     </script>
 </html>
