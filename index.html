@@ -217,7 +217,9 @@
         function newAudio() {
             let newRandomAudioFile = getRandomAudioFile();
             wavesurfer.pause();
+            playPause.src = "/images/play.svg";
             wavesurfer.load(newRandomAudioFile);
+            wavesurfer.setTime(0);
         }
     </script>
 </html>
