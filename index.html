@@ -24,11 +24,11 @@
             text-align: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            
         } 
         html, body {
             height: 100%;
             margin: 0;
+            max-height: 100%;
         }
         @media (prefers-color-scheme: dark) {
             body {
@@ -126,7 +126,10 @@
         #audioFilename {
             margin-top: 0;
             font-size: 24px;
-            text-wrap: wrap;
+            text-wrap: balance;
+        }
+        i {
+            text-wrap: balance;
         }
         </style>
     </head>
@@ -153,6 +156,8 @@
                 <a onClick="newAudio()"><img class="audioControls footerIcon"src="/images/sync-solid.svg"></a> 
                 <p id="audioFilename"></p>
             </div>
+            <i>All trademarks, logos and brand names are the property of their respective owners.</i>
+
         </div>
     </body>
     <script>
